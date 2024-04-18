@@ -6,8 +6,7 @@ public class MessageController {
 
     public byte[] dataProcess(byte[] message) throws IOException {
 
-        byte[] responseBuffer = new byte[0];
-
+        byte[] responseBuffer;
         byte opcode = message[9];
 
         MessageParser messageParser = MessageParseInit.createMessageParser(opcode);

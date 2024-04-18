@@ -48,6 +48,32 @@ public class Command {
         return value;
     }
 
+    // byte to hex
+    public static String byteToHexASCII(byte value) {
+        // byte 값을 16진수 아스키 코드로 변환
+        String hexString = Integer.toHexString(value & 0xFF).toUpperCase();
+
+        // 두 자리로 만들기 위해 앞에 0 추가
+        if (hexString.length() < 2) {
+            hexString = "0" + hexString;
+        }
+
+        // 16진수 아스키 코드로 반환
+        return "0x" + hexString;
+    }
+
+    // get data length
+    public static int getDataLength(byte[] buffer){
+        int dataLength = 0;
+        int offset = 0 + Command.MESSAGE_SOM_LENGTH + Command.MESSAGE_TYPE_LENGTH;
+        //Legnth Check
+        byte[] lengthBytes = new byte[Command.MESSAGE_HEADER_LENGTH];
+        System.arraycopy(buffer, offset, lengthBytes, 0, Command.MESSAGE_HEADER_LENGTH);
+        dataLength = byteArrayToInt(lengthBytes) - Command.MESSAGE_CRC_LENGTH - Command.MESSAGE_EOM_LENGTH;   //Length = Data length + Tail length(CRC+EOM)
+
+        return dataLength;
+    }
+
     // makes interface data into response packet
     public static byte[] makeComplePacket(byte[] interfaceData, int type){
 
