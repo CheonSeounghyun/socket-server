@@ -1,4 +1,7 @@
 # socket-server
+
+![서버-소켓](./socket-server-draw.png)
+
 클라이언트와 소켓 통신으로 인터페이스 명령 및 데이터를 송수신하는 서버 프로그램 템플릿 입니다.
 
 ### ApplicationRunner
