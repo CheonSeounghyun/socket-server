@@ -13,11 +13,4 @@ public class ClientThreadPool {
         poolSize = threadpoolSize;
     }
 
-    public static ExecutorService getThreadPool() {
-        return threadPool;
-    }
-
-    public static int getMaxThreadPoolSize() {
-        return poolSize;
-    }
 }
